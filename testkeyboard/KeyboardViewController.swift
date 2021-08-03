@@ -33,6 +33,21 @@ class KeyboardViewController: UIInputViewController {
         
         self.nextKeyboardButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+
+        // 顔文字ボタンの追加
+        // 顔文字ボタンの生成
+        let kaomojiButton = UIButton(type: .system)
+        kaomojiButton.setTitle("顔文字", for: .normal)
+        kaomojiButton.sizeToFit()
+        kaomojiButton.translatesAutoresizingMaskIntoConstraints = false
+        kaomojiButton.addTarget(self, action: #selector(pushKaomoji), for: .touchUpInside)
+
+        // ベースとなるキーボードViewに顔文字ボタンを追加
+        self.view.addSubview(kaomojiButton)
+
+        // 顔文字ボタンの位置を指定
+        kaomojiButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        kaomojiButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
     
     override func viewWillLayoutSubviews() {
@@ -57,4 +72,7 @@ class KeyboardViewController: UIInputViewController {
         self.nextKeyboardButton.setTitleColor(textColor, for: [])
     }
 
+    @objc func pushKaomoji() {
+        self.textDocumentProxy.insertText("m(__)m")
+    }
 }
