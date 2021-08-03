@@ -40,6 +40,7 @@ class KeyboardViewController: UIInputViewController {
         kaomojiButton.setTitle("顔文字", for: .normal)
         kaomojiButton.sizeToFit()
         kaomojiButton.translatesAutoresizingMaskIntoConstraints = false
+        kaomojiButton.addTarget(self, action: #selector(pushKaomoji), for: .touchUpInside)
 
         // ベースとなるキーボードViewに顔文字ボタンを追加
         self.view.addSubview(kaomojiButton)
@@ -71,4 +72,7 @@ class KeyboardViewController: UIInputViewController {
         self.nextKeyboardButton.setTitleColor(textColor, for: [])
     }
 
+    @objc func pushKaomoji() {
+        self.textDocumentProxy.insertText("m(__)m")
+    }
 }
